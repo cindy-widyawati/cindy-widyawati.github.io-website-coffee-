@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KOPIWAH</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f0e9;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 24px;
+        }
+
+        .section-hero {
+            padding: 90px 0;
+            background-color: #f5f0e9;
+
+        }
+
+        .btn-brown {
+            background-color: #6b4f3b;
+            color: white;
+            border-radius: 30px;
+            padding: 10px 25px;
+        }
+
+        .btn-brown:hover {
+            background-color: #5c402f;
+            color: white;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .rating-stars span {
+            color: gold;
+            font-size: 20px;
+        }
+
+        .hero-image {
+            max-width: 250px;
+            width: 100%;
+        }
+
+        .card {
+            height: 100%;
+        }
+
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            padding: 0 !important;
+            overflow: hidden;
+            border-radius: 10px;
+            flex: 1 1 auto;
+            /* allow card to grow and fill column height */
+        }
+
+        /* ukuran gambar seragam */
+        .product-card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 14px;
+        }
+
+        /* card premium */
+        .product-card {
+            border-radius: 20px;
+            background: #ffffff;
+            overflow: hidden;
+            padding: 0;
+            transition: all .35s ease;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        /* efek hover */
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+        }
+
+        /* efek klik */
+        .product-card:active {
+            transform: scale(0.95);
+        }
+
+        .product-card .content {
+            padding: 20px;
+        }
+
+        .product-card h4 {
+            font-weight: 700;
+        }
+
+        .product-card p {
+            color: #555;
+        }
+
+        /* harga */
+        .old-price {
+            text-decoration: line-through;
+            font-size: 15px;
+            color: #999;
+        }
+
+        .new-price {
+            font-size: 19px;
+            font-weight: 700;
+            color: #6b3e26;
+            margin-top: 3px;
+        }
+
+        .testimonial-card {
+            background: #ffffff;
+            border-radius: 18px;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            border: 1px solid #eee;
+        }
+
+        /* Saat hover */
+        .testimonial-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Saat ditekan (klik) - tidak kaku */
+        .testimonial-card:active {
+            transform: scale(0.96);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .testimonial-img {
+            width: 85px;
+            height: 85px;
+            object-fit: cover;
+            border: 3px solid #d8d8d8;
+        }
+
+        .stars {
+            font-size: 1.2rem;
+            color: #ffcc00;
+            letter-spacing: 2px;
+        }
+
+        #visi-misi h2 {
+            letter-spacing: 1px;
+        }
+
+        .visi-card {
+            transition: 0.25s ease;
+            border-left: 6px solid #a87e5d;
+            /* warna kopi */
+        }
+
+        /* efek saat hover */
+        .visi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .qty-minus,
+        .qty-plus {
+            width: 28px;
+            height: 28px;
+            padding: 0;
+            font-size: 1rem;
+            border-radius: 50%;
+        }
+
+        .qty-value {
+            width: 20px;
+            text-align: center;
+        }
+
+        .buy-btn {
+            font-size: 0.8rem;
+            border-radius: 10px;
+        }
+
+        <style>.contact-wrapper {
+            background: linear-gradient(135deg, #f1e5d6 0%, #e8d3be 50%, #f5ebdf 100%);
+            padding: 50px 25px;
+            border-radius: 18px;
+            margin-top: 60px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Garis + Judul Tengah */
+        .title-line {
+            width: 100%;
+            text-align: center;
+            border-bottom: 2px solid #b88a62;
+            line-height: 0.1em;
+            margin-bottom: 40px;
+        }
+
+        .title-line span {
+            background: #f1e5d6;
+            padding: 0 14px;
+            font-size: 24px;
+            font-weight: 700;
+            color: #4b2e1d;
+        }
+
+        /* Card kontak */
+        .contact-card {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 18px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-card i {
+            font-size: 38px;
+            color: #a06842;
+        }
+
+        .contact-card h5 {
+            margin: 0;
+            color: #4b2e1d;
+            font-weight: 700;
+        }
+
+        /* Tombol WA */
+        .btn-wa {
+            display: inline-block;
+            background: #25D366;
+            color: white;
+            padding: 8px 17px;
+            border-radius: 6px;
+            font-weight: 400px;
+            margin-top: 5px;
+            text-decoration: none;
+        }
+
+        .btn-wa:hover {
+            background: #1eb85a;
+            color: #fff;
+        }
+
+        /* Jam operasional */
+        .jam-section {
+            background-color: #e5d0b7;
+            padding: 25px;
+            border-radius: 14px;
+            margin-top: 30px;
+        }
+
+        .jam-section h4 {
+            color: #4b2e1d;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .jam-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 7px 0;
+            border-bottom: 1px dashed #8d6a4c;
+            color: #4b2e1d;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3 fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">KOPIWAH</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto me-3">
+                    <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="#varian" class="nav-link">Varian</a></li>
+                    <li class="nav-item"><a href="#testimoni" class="nav-link">Testimoni</a></li>
+                    <li class="nav-item"><a href="cara pesan.html" class="nav-link">Cara Pesan</a></li>
+                </ul>
+                <a href="#varian" class="btn btn-brown">Pesan</a>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!-- HERO -->
+    <section class="section-hero" id="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <span class="badge bg-warning">Produk Terbaik 2025</span>
+                    <h1 class="mt-3 fw-bold">Nikmati Sensasi Ngopi Cafe Premium di Rumah</h1>
+                    <p class="mt-2">Kopi literan premium dengan biji arabika pilihan, diseduh menggunakan teknik terbaik
+                        untuk rasa yang lebih fresh dan nikmat.</p>
+                    <a href="#varian" class="btn btn-brown mt-3">Pesan Sekarang</a>
+                </div>
+                <div class="col-md-6 text-center">
+                    <img src="logo.jpg" alt="kopi" class="img-fluid rounded hero-image" /> <br>
+                    <div class="shadow bg-white p-2 rounded-3 d-inline-block mt-3">
+                        <b>10K+</b> Liter Terjual • <b>98%</b> Kepuasan
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VISI MISI -->
+    <section id="visi-misi" class="py-5 bg-light">
+        <div class="container">
+
+            <h2 class="fw-bold text-center mb-4">Visi & Misi Kopiwah</h2>
+
+            <div class="row g-4">
+
+                <!-- VISI -->
+                <div class="col-md-6">
+                    <div class="p-4 shadow-sm rounded bg-white visi-card">
+                        <h4 class="fw-bold mb-3 text-center">Visi</h4>
+                        <p class="text-center">
+                            Menjadi brand kopi lokal yang menghadirkan pengalaman menikmati kopi
+                            berkualitas tinggi, praktis, dan terjangkau bagi semua kalangan.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- MISI -->
+                <div class="col-md-6">
+                    <div class="p-4 shadow-sm rounded bg-white visi-card">
+                        <h4 class="fw-bold mb-3 text-center">Misi</h4>
+                        <ul>
+                            <li>Menyajikan kopi dengan bahan terbaik dan rasa konsisten.</li>
+                            <li>Memberikan harga yang ramah di kantong tanpa mengurangi kualitas.</li>
+                            <li>Menghadirkan pelayanan cepat, ramah, dan profesional.</li>
+                            <li>Meningkatkan kreativitas varian rasa agar pelanggan tidak bosan.</li>
+                            <li>Memberikan pengalaman minum kopi yang memudahkan aktivitas harian.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========== VARIAN MENU LENGKAP ========== -->
+    <section id="varian" class="py-5">
+        <div class="container">
+            <h2 class="fw-bold text-center mb-4">Varian Menu</h2>
+
+            <div class="row g-4 align-items-stretch">
+
+                <!-- 1 -->
+                <div class="col-md-3 col-sm-6 d-flex">
+                    <div class="card product-card small-card shadow-sm">
+                        <img src="Iced Coffee Latte.jpg" class="img-fluid" />
+                        <div class="content">
+                            <h5>Iced Coffee Latte</h5>
+                            <p>Kopi murni dengan aftertaste coklat.</p>
+                            <div class="old-price">Rp 20.000</div>
+                            <div class="new-price">Rp 15.000</div>
+                            <div class="order-control mt-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <button class="btn btn-sm btn-outline-danger qty-minus">−</button>
+                                        <span class="qty-value fw-bold">0</span>
+                                        <button class="btn btn-sm btn-outline-success qty-plus">+</button>
+                                    </div>
+                                    <a href="pesanan.html" class="btn btn-sm btn-warning fw-semibold buy-btn">Beli</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2 -->
+                <div class="col-md-3 col-sm-6 d-flex">
+                    <div class="card product-card small-card shadow-sm">
+                        <img src="macha coffee.jpg" class="img-fluid" />
+                        <div class="content">
+                            <h5>Matcha Coffee</h5>
+                            <p>Kopi arabika dengan vanilla creamy.</p>
+                            <div class="old-price">Rp 22.000</div>
+                            <div class="new-price">Rp 18.000</div>
+                            <div class="order-control mt-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <button class="btn btn-sm btn-outline-danger qty-minus">−</button>
+                                        <span class="qty-value fw-bold">0</span>
+                                        <button class="btn btn-sm btn-outline-success qty-plus">+</button>
+                                    </div>
+                                    <a href="pesanan.html" class="btn btn-sm btn-warning fw-semibold buy-btn">Beli</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 -->
+                <div class="col-md-3 col-sm-6 d-flex">
+                    <div class="card product-card small-card shadow-sm">
+                        <img src="Raspberyy coffee latte.jpg" class="img-fluid" />
+                        <div class="content">
+                            <h5>Raspberry Coffee</h5>
+                            <p>Kopi hazelnut creamy manis.</p>
+                            <div class="old-price">Rp 21.000</div>
+                            <div class="new-price">Rp 17.000</div>
+                            <div class="order-control mt-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <button class="btn btn-sm btn-outline-danger qty-minus">−</button>
+                                        <span class="qty-value fw-bold">0</span>
+                                        <button class="btn btn-sm btn-outline-success qty-plus">+</button>
+                                    </div>
+                                    <a href="pesanan.html" class="btn btn-sm btn-warning fw-semibold buy-btn">Beli</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4 Kentang -->
+                <div class="col-md-3 col-sm-6 d-flex">
+                    <div class="card product-card small-card shadow-sm">
+                        <img src="kentang.jpg" class="img-fluid" />
+                        <div class="content">
+                            <h5>Kentang Goreng</h5>
+                            <p>Kentang renyah, gurih, cocok untuk cemilan kopi.</p>
+                            <div class="old-price">Rp 18.000</div>
+                            <div class="new-price">Rp 13.000</div>
+                            <div class="order-control mt-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <button class="btn btn-sm btn-outline-danger qty-minus">−</button>
+                                        <span class="qty-value fw-bold">0</span>
+                                        <button class="btn btn-sm btn-outline-success qty-plus">+</button>
+                                    </div>
+                                    <a href="pesanan.html" class="btn btn-sm btn-warning fw-semibold buy-btn">Beli</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5 Piscok -->
+                <div class="col-md-3 col-sm-6 d-flex">
+                    <div class="card product-card small-card shadow-sm">
+                        <img src="Piscok or banana chocolate is  traditional snacks from indonesia _ Premium Photo.jpg"
+                            class="img-fluid" />
+                        <div class="content">
+                            <h5>Piscok</h5>
+                            <p>Pisang coklat lumer, manis dan hangat.</p>
+                            <div class="old-price">Rp 15.000</div>
+                            <div class="new-price">Rp 10.000</div>
+                            <div class="order-control mt-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <button class="btn btn-sm btn-outline-danger qty-minus">−</button>
+                                        <span class="qty-value fw-bold">0</span>
+                                        <button class="btn btn-sm btn-outline-success qty-plus">+</button>
+                                    </div>
+                                    <a href="pesanan.html" class="btn btn-sm btn-warning fw-semibold buy-btn">Beli</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6 Dark Chocolate -->
+                <div class="col-md-3 col-sm-6 d-flex">
+                    <div class="card product-card small-card shadow-sm">
+                        <img src="Salted Dark Chocolate Moka Pot with Pine Nut Cream.jpg" class="img-fluid" />
+                        <div class="content">
+                            <h5>Dark Chocolate</h5>
+                            <p>Minuman cokelat pekat, creamy dan bold.</p>
+                            <div class="old-price">Rp 22.000</div>
+                            <div class="new-price">Rp 17.000</div>
+                            <div class="order-control mt-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <button class="btn btn-sm btn-outline-danger qty-minus">−</button>
+                                        <span class="qty-value fw-bold">0</span>
+                                        <button class="btn btn-sm btn-outline-success qty-plus">+</button>
+                                    </div>
+                                    <a href="pesanan.html" class="btn btn-sm btn-warning fw-semibold buy-btn">Beli</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7 Dimsum Mentai -->
+                <div class="col-md-3 col-sm-6 d-flex">
+                    <div class="card product-card small-card shadow-sm">
+                        <img src="Dimsum Mentai.jpg" class="img-fluid" />
+                        <div class="content">
+                            <h5>Dimsum Mentai</h5>
+                            <p>Dimsum lembut dengan saus mentai creamy.</p>
+                            <div class="old-price">Rp 20.000</div>
+                            <div class="new-price">Rp 16.000</div>
+                            <div class="order-control mt-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <button class="btn btn-sm btn-outline-danger qty-minus">−</button>
+                                        <span class="qty-value fw-bold">0</span>
+                                        <button class="btn btn-sm btn-outline-success qty-plus">+</button>
+                                    </div>
+                                    <a href="index2.html" class="btn btn-sm btn-warning fw-semibold buy-btn">Beli</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8 Caramel Brulee -->
+                <div class="col-md-3 col-sm-6 d-flex">
+                    <div class="card product-card small-card shadow-sm">
+                        <img src="Caramel Brulée Latte - Hibord.jpg" class="img-fluid" />
+                        <div class="content">
+                            <h5>Caramel Brulee</h5>
+                            <p>Kopi susu caramel dengan rasa manis wangi.</p>
+                            <div class="old-price">Rp 24.000</div>
+                            <div class="new-price">Rp 19.000</div>
+                            <div class="order-control mt-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <button class="btn btn-sm btn-outline-danger qty-minus">−</button>
+                                        <span class="qty-value fw-bold">0</span>
+                                        <button class="btn btn-sm btn-outline-success qty-plus">+</button>
+                                    </div>
+                                    <a href="pesanan.html" class="btn btn-sm btn-warning fw-semibold buy-btn">Beli</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9 Espresso -->
+                <div class="col-md-3 col-sm-6 d-flex">
+                    <div class="card product-card small-card shadow-sm">
+                        <img src="Clive Coffee Espresso Recipe.jpg" class="img-fluid" />
+                        <div class="content">
+                            <h5>Coffee Espresso</h5>
+                            <p>Kopi pekat dengan karakter kuat dan bold.</p>
+                            <div class="old-price">Rp 18.000</div>
+                            <div class="new-price">Rp 14.000</div>
+                            <div class="order-control mt-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <button class="btn btn-sm btn-outline-danger qty-minus">−</button>
+                                        <span class="qty-value fw-bold">0</span>
+                                        <button class="btn btn-sm btn-outline-success qty-plus">+</button>
+                                    </div>
+                                    <a href="pesanan.html" class="btn btn-sm btn-warning fw-semibold buy-btn">Beli</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10 Bonus Strawberry Milk Coffee -->
+                <div class="col-md-3 col-sm-6 d-flex">
+                    <div class="card product-card small-card shadow-sm">
+                        <img src="download.jpg" class="img-fluid" />
+                        <div class="content">
+                            <h5>Strawberry Milk Coffee</h5>
+                            <p>Kopi susu fruity dengan rasa strawberry fresh.</p>
+                            <div class="old-price">Rp 23.000</div>
+                            <div class="new-price">Rp 18.000</div>
+                            <div class="order-control mt-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <button class="btn btn-sm btn-outline-danger qty-minus">−</button>
+                                        <span class="qty-value fw-bold">0</span>
+                                        <button class="btn btn-sm btn-outline-success qty-plus">+</button>
+                                    </div>
+                                    <a href="pesanan.html" class="btn btn-sm btn-warning fw-semibold buy-btn">Beli</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========== SCRIPT FUNGSI + DAN – ========== -->
+    <script>
+        document.querySelectorAll(".product-card").forEach(function (card) {
+            const plusBtn = card.querySelector(".qty-plus");
+            const minusBtn = card.querySelector(".qty-minus");
+            const qtyValue = card.querySelector(".qty-value");
+            let qty = 0;
+
+            plusBtn.addEventListener("click", function () {
+                qty++;
+                qtyValue.textContent = qty;
+            });
+
+            minusBtn.addEventListener("click", function () {
+                if (qty > 0) {
+                    qty--;
+                    qtyValue.textContent = qty;
+                }
+            });
+        });
+    </script>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-5 bg-white">
+        <div class="container">
+            <h2 class="fw-bold text-center mb-4">Pertanyaan Umum (FAQ)</h2>
+
+            <div class="accordion" id="faqAccordion">
+
+                <!-- FAQ 1 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#q1">
+                            Berapa lama masa simpan kopi?
+                        </button>
+                    </h2>
+                    <div id="q1" class="accordion-collapse collapse show">
+                        <div class="accordion-body">
+                            Kopi literan dapat bertahan hingga <strong>7 hari</strong> jika disimpan di dalam kulkas dan
+                            tetap tertutup rapat.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#q2">
+                            Apakah bisa kirim luar kota?
+                        </button>
+                    </h2>
+                    <div id="q2" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            Bisa! Pengiriman luar kota menggunakan <strong>jasa ekspedisi</strong> dengan pengemasan
+                            aman.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#q3">
+                            Kopi dibuat fresh atau sudah stok?
+                        </button>
+                    </h2>
+                    <div id="q3" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            Semua kopi dibuat <strong>fresh setiap hari</strong> agar menjaga aroma dan kualitas
+                            terbaik.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#q4">
+                            Apakah bisa request tingkat kemanisan?
+                        </button>
+                    </h2>
+                    <div id="q4" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            Tentu! Kamu bisa memilih manis <strong>normal, less sugar, atau no sugar</strong>.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#q5">
+                            Apakah tersedia pilihan susu selain susu sapi?
+                        </button>
+                    </h2>
+                    <div id="q5" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            Kami menyediakan beberapa alternatif seperti <strong>oat milk, soy milk, dan almond
+                                milk</strong>.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 6 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#q6">
+                            Bisa request kopi strong atau light?
+                        </button>
+                    </h2>
+                    <div id="q6" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            Bisa! Kamu bisa request <strong>extra shot</strong> untuk strong, atau takaran kopi
+                            dikurangi untuk versi lebih light.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 7 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#q7">
+                            Apakah kopi tersedia dalam versi panas dan dingin?
+                        </button>
+                    </h2>
+                    <div id="q7" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            Ya, hampir semua menu kopi kami tersedia dalam <strong>hot & iced</strong>.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 8 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#q8">
+                            Apakah bisa custom rasa kopi?
+                        </button>
+                    </h2>
+                    <div id="q8" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            Bisa! Kami menyediakan pilihan sirup seperti <strong>vanilla, caramel, hazelnut, dan
+                                cinnamon</strong>.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 9 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#q9">
+                            Apakah kopi bisa dine-in dan takeaway?
+                        </button>
+                    </h2>
+                    <div id="q9" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            Semua menu tersedia untuk <strong>dine-in, takeaway, dan delivery</strong>.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 10 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#q10">
+                            Bagaimana jika kopi yang saya terima rasanya kurang sesuai?
+                        </button>
+                    </h2>
+                    <div id="q10" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            Jangan khawatir! Kami menyediakan <strong>garansi remake</strong> untuk perbaikan rasa tanpa
+                            biaya tambahan.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONI -->
+    <section id="testimoni" class="py-5">
+        <div class="container">
+            <h2 class="fw-bold text-center mb-5">Apa Kata Pelanggan</h2>
+
+            <div class="row g-4 justify-content-center">
+
+                <!-- CARD 1 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="testimonial-card text-center p-4">
+                        <img src="cewe1.jpg" class="rounded-circle mb-3 testimonial-img" alt="">
+                        <h5 class="fw-bold">Dina Putri</h5>
+                        <div class="stars mb-2">★★★★★</div>
+                        <p>"Kopinya strong tapi smooth. Selalu repeat order!"</p>
+                    </div>
+                </div>
+
+                <!-- CARD 2 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="testimonial-card text-center p-4">
+                        <img src="vectors, photos and PSD files _ Free download.jpg"
+                            class="rounded-circle mb-3 testimonial-img" alt="">
+                        <h5 class="fw-bold">Rizky Andara</h5>
+                        <div class="stars mb-2">★★★★☆</div>
+                        <p>"Rasa premium dan pelayanan cepat. Sangat recommended!"</p>
+                    </div>
+                </div>
+
+                <!-- CARD 3 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="testimonial-card text-center p-4">
+                        <img src="cewe2.jpg" class="rounded-circle mb-3 testimonial-img" alt="">
+                        <h5 class="fw-bold">Salsa Nur</h5>
+                        <div class="stars mb-2">★★★★★</div>
+                        <p>"Packaging aman, estetik, dan aromanya luar biasa!"</p>
+                    </div>
+                </div>
+
+                <!-- CARD 4 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="testimonial-card text-center p-4">
+                        <img src="cowo3.jpg" class="rounded-circle mb-3 testimonial-img" alt="">
+                        <h5 class="fw-bold">Hendra Wijaya</h5>
+                        <div class="stars mb-2">★★★★★</div>
+                        <p>"Harga terjangkau tapi rasa tetap kelas premium."</p>
+                    </div>
+                </div>
+
+                <!-- CARD 5 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="testimonial-card text-center p-4">
+                        <img src="cewe3.jpg" class="rounded-circle mb-3 testimonial-img" alt="">
+                        <h5 class="fw-bold">Laras Ayu</h5>
+                        <div class="stars mb-2">★★★★☆</div>
+                        <p>"Pengiriman cepat. Kopi tidak tumpah sama sekali!"</p>
+                    </div>
+                </div>
+
+                <!-- CARD 6 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="testimonial-card text-center p-4">
+                        <img src="cowo2.jpg" class="rounded-circle mb-3 testimonial-img" alt="">
+                        <h5 class="fw-bold">Bagas Mahendra</h5>
+                        <div class="stars mb-2">★★★★★</div>
+                        <p>"Rasanya konsisten setiap pesen. Mantap terus!"</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- FOOTER -->
+    <div class="container">
+        <div class="contact-wrapper">
+
+            <!-- GARIS + JUDUL TENGAH -->
+            <h2 class="title-line"><span>Hubungi Kami</span></h2>
+
+            <!-- ALAMAT -->
+            <div class="contact-card">
+                <i class="fa-solid fa-location-dot"></i>
+                <div>
+                    <h5>Alamat Toko</h5>
+                    <p>Jl. Kopi Harum No. 88<br>Jember Selatan 10220</p>
+                </div>
+            </div>
+
+            <!-- WHATSAPP -->
+            <div class="contact-card">
+                <i class="fa-brands fa-whatsapp"></i>
+                <div>
+                    <h5>WhatsApp</h5>
+                    <p>+62 812-3456-7890</p>
+
+                    <!-- Tombol Klik WhatsApp -->
+                    <a class="btn-wa" href="https://wa.me/send?me/6283847984420" target="_blank">
+                        <i class="fa-brands fa-whatsapp"></i> Chat Sekarang
+                    </a>
+                </div>
+            </div>
+
+            <!-- TELEPON -->
+            <div class="contact-card">
+                <i class="fa-solid fa-phone"></i>
+                <div>
+                    <h5>Telepon</h5>
+                    <p>083847984420</p>
+                </div>
+            </div>
+
+            <!-- EMAIL -->
+            <div class="contact-card">
+                <i class="fa-solid fa-envelope"></i>
+                <div>
+                    <h5>Email</h5>
+                    <p>support@coffeestore.id</p>
+                </div>
+            </div>
+
+            <!-- JAM OPERASIONAL -->
+            <div class="jam-section">
+                <h4><i class="fa-regular fa-clock"></i> Jam Operasional</h4>
+
+                <div class="jam-item">
+                    <span>Senin – Jumat</span>
+                    <strong>08:00 – 17:00</strong>
+                </div>
+                <div class="jam-item">
+                    <span>Sabtu</span>
+                    <strong>09:00 – 15:00</strong>
+                </div>
+                <div class="jam-item">
+                    <span>Minggu</span>
+                    <strong>Tutup</strong>
+                </div>
+
+                <p class="mt-2">WhatsApp tetap aktif di luar jam kerja.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
